@@ -1,0 +1,108 @@
+﻿@model  BO.ProductManagement
+
+@{
+    ViewBag.Title = "CreateProductManagement";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>CreateProductManagement</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ProductManagement</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.categoeyid, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.categoeyid, new SelectList(ViewBag.Message, "id", "category_name"), "--Select Categor--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.categoeyid)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.subcategoryid, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.subcategoryid, new SelectList(" "), "--Select Sub-Categor--", new { @class = "form-control", })
+                @Html.ValidationMessageFor(model => model.subcategoryid)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description)
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.features, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.features)
+                @Html.ValidationMessageFor(model => model.features)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.price)
+                @Html.ValidationMessageFor(model => model.price)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.quality, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.quality)
+                @Html.ValidationMessageFor(model => model.quality)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.code, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.code)
+                @Html.ValidationMessageFor(model => model.code)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("categoeyid").change(function () {
+            $.get("/Backend/GetALLSubCategories", { Categoryid: $("#categoryid").val() }, function (data) {
+                $("#subcategoryid").empty();
+                $.each(data, function (index, row) {
+                    $("#subcategoryid").append("<option value ='" + rowid + "'>" + row.subcategory + "</option>")
+                });
+
+            });
+        });
+    });
+</script>

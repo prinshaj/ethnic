@@ -1,0 +1,44 @@
+﻿@model BO.SubCategory
+
+@{
+    ViewBag.Title = "CreateSubCategories";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>CreateSubCategories</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SubCategory</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.categoryid, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.categoryid,new SelectList(ViewBag.Name,"id","category_name"),new{@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.categoryid)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.subcategory, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.subcategory)
+                @Html.ValidationMessageFor(model => model.subcategory)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    @ViewBag.Message
+}
+
+

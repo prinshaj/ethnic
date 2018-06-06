@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b5bbe9aeda5443e18a1a19c0934bd7c3" Name="Diagram1">
+        <EntityTypeShape EntityType="EthnicModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EthnicModel.tblBooking" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EthnicModel.tblCategory" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="EthnicModel.tblImageUpload" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EthnicModel.tblProductManagement" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EthnicModel.tblSliderImage" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EthnicModel.tblSubCategory" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="EthnicModel.FK_tblProductManagement_tblCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EthnicModel.FK_tblSubCategory_tblCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="EthnicModel.FK_tblProductManagement_tblSubCategory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

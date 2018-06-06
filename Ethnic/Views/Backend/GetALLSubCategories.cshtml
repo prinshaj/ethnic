@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BO.SubCategory>
+
+@{
+    ViewBag.Title = "GetALLSubCategories";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>GetALLSubCategories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subcategory)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subcategory)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

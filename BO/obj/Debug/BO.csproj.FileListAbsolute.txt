@@ -1,0 +1,10 @@
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\BO.dll.config
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\BO.dll
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\BO.pdb
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\EntityFramework.dll
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\EntityFramework.xml
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\obj\Debug\BO.csprojResolveAssemblyReference.cache
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\obj\Debug\BO.dll
+C:\Users\HP\documents\visual studio 2013\Projects\Ethnic\BO\obj\Debug\BO.pdb

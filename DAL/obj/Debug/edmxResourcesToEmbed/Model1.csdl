@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EthnicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblBooking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="tblProductManagements" Relationship="Self.FK_tblProductManagement_tblCategory" FromRole="tblCategory" ToRole="tblProductManagement" />
+    <NavigationProperty Name="tblSubCategories" Relationship="Self.FK_tblSubCategory_tblCategory" FromRole="tblCategory" ToRole="tblSubCategory" />
+  </EntityType>
+  <EntityType Name="tblImageUpload">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imageupload" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblProductManagement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryid" Type="Int32" />
+    <Property Name="subcategoryid" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="features" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="quality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCategory" Relationship="Self.FK_tblProductManagement_tblCategory" FromRole="tblProductManagement" ToRole="tblCategory" />
+    <NavigationProperty Name="tblSubCategory" Relationship="Self.FK_tblProductManagement_tblSubCategory" FromRole="tblProductManagement" ToRole="tblSubCategory" />
+  </EntityType>
+  <EntityType Name="tblSliderImage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageUpload" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSubCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryid" Type="Int32" />
+    <Property Name="subcategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCategory" Relationship="Self.FK_tblSubCategory_tblCategory" FromRole="tblSubCategory" ToRole="tblCategory" />
+    <NavigationProperty Name="tblProductManagements" Relationship="Self.FK_tblProductManagement_tblSubCategory" FromRole="tblSubCategory" ToRole="tblProductManagement" />
+  </EntityType>
+  <Association Name="FK_tblProductManagement_tblCategory">
+    <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+    <End Role="tblProductManagement" Type="Self.tblProductManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblProductManagement">
+        <PropertyRef Name="categoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubCategory_tblCategory">
+    <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+    <End Role="tblSubCategory" Type="Self.tblSubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblSubCategory">
+        <PropertyRef Name="categoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductManagement_tblSubCategory">
+    <End Role="tblSubCategory" Type="Self.tblSubCategory" Multiplicity="0..1" />
+    <End Role="tblProductManagement" Type="Self.tblProductManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSubCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblProductManagement">
+        <PropertyRef Name="subcategoryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EthnicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblBookings" EntityType="Self.tblBooking" />
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+    <EntitySet Name="tblImageUploads" EntityType="Self.tblImageUpload" />
+    <EntitySet Name="tblProductManagements" EntityType="Self.tblProductManagement" />
+    <EntitySet Name="tblSliderImages" EntityType="Self.tblSliderImage" />
+    <EntitySet Name="tblSubCategories" EntityType="Self.tblSubCategory" />
+    <AssociationSet Name="FK_tblProductManagement_tblCategory" Association="Self.FK_tblProductManagement_tblCategory">
+      <End Role="tblCategory" EntitySet="tblCategories" />
+      <End Role="tblProductManagement" EntitySet="tblProductManagements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubCategory_tblCategory" Association="Self.FK_tblSubCategory_tblCategory">
+      <End Role="tblCategory" EntitySet="tblCategories" />
+      <End Role="tblSubCategory" EntitySet="tblSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductManagement_tblSubCategory" Association="Self.FK_tblProductManagement_tblSubCategory">
+      <End Role="tblSubCategory" EntitySet="tblSubCategories" />
+      <End Role="tblProductManagement" EntitySet="tblProductManagements" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
